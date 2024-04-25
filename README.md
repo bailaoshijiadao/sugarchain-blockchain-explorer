@@ -111,12 +111,12 @@ use different terminals
 	rm -f ./tmp/index.pid
 	node scripts/sync.js index update
 
-*It is recommended to have this script launched via a cronjob at 1+ min intervals.*
-
 ### COMPLETE
 
 
 ### OTHER
+
+*It is recommended to have this script launched via a cronjob at 1+ min intervals.*
 
 **crontab**
 
