@@ -1,14 +1,7 @@
-Iquidus Explorer - 1.7.4
+SugarChain Explorer - 1.7.4
 ================
 
 An open source block explorer written in node.js.
-
-### See it in action
-
-*  [List of live explorers running Iquidus](https://github.com/iquidus/explorer/wiki/Live-Explorers)
-
-
-*Note: If you would like your instance mentioned here contact me*
 
 ### Requires
 
@@ -28,25 +21,21 @@ Create databse:
 
 Create user with read/write access:
 
-    > db.createUser( { user: "iquidus", pwd: "3xp!0reR", roles: [ "readWrite" ] } )
-
-*Note: If you're using mongo shell 4.2.x, use the following to create your user:
-
-    > db.addUser( { user: "username", pwd: "password", roles: [ "readWrite"] })
+    > db.createUser( { user: "mongo-user", pwd: "mongo-pwd", roles: [ "readWrite" ] } )
 
 ### Get the source
 
-    git clone https://github.com/iquidus/explorer explorer
+    git clone https://github.com/bailaoshijiadao/sugarchain-explorer sugarchain-explorer
 
 ### Install node modules
 
-    cd explorer && npm install --production
+    cd sugarchain-explorer && npm install --production
 
 ### Configure
 
-    cp ./settings.json.template ./settings.json
-
 *Make required changes in settings.json*
+
+*dbsettings* *wallet* required
 
 ### Start Explorer
 
@@ -82,17 +71,25 @@ sync.js (located in scripts/) is used for updating the local databases. This scr
     * The market database only supports (& defaults to) reindex mode.
     * If check mode finds missing data(ignoring new data since last sync),
       index_timeout in settings.json is set too low.
-
+	  
+use different terminals
+	
+	cd sugarchain-explorer
+	rm -f ./tmp/index.pid`
+	node scripts/sync.js index update
 
 *It is recommended to have this script launched via a cronjob at 1+ min intervals.*
 
 **crontab**
 
+*Note: Set scheduled tasks after sync is completed*
 *Example crontab; update index every minute and market data every 2 minutes*
 
     */1 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/sync.js index update > /dev/null 2>&1
     */2 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/sync.js market > /dev/null 2>&1
-    */5 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/peers.js > /dev/null 2>&1
+
+for Example
+	*/1 * * * * rm -f ./tmp/index.pid && cd /root/sugarchain-explorer && node scripts/sync.js index update && node scripts/sync.js market && node scripts/peers.js > /dev/null 2>&1
 
 ### Wallet
 
