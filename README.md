@@ -75,7 +75,7 @@ sync.js (located in scripts/) is used for updating the local databases. This scr
 use different terminals
 	
 	cd sugarchain-explorer
-	rm -f ./tmp/index.pid`
+	rm -f ./tmp/index.pid
 	node scripts/sync.js index update
 
 *It is recommended to have this script launched via a cronjob at 1+ min intervals.*
@@ -83,12 +83,14 @@ use different terminals
 **crontab**
 
 *Note: Set scheduled tasks after sync is completed*
+
 *Example crontab; update index every minute and market data every 2 minutes*
 
     */1 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/sync.js index update > /dev/null 2>&1
     */2 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/sync.js market > /dev/null 2>&1
 
-for Example
+*for Example*
+
 	*/1 * * * * rm -f ./tmp/index.pid && cd /root/sugarchain-explorer && node scripts/sync.js index update && node scripts/sync.js market && node scripts/peers.js > /dev/null 2>&1
 
 ### Wallet
