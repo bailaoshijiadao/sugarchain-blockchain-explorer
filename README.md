@@ -113,6 +113,11 @@ use different terminals
 
 *It is recommended to have this script launched via a cronjob at 1+ min intervals.*
 
+### COMPLETE
+
+
+### OTHER
+
 **crontab**
 
 *Note: Set scheduled tasks after sync is completed*
