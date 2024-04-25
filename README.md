@@ -9,6 +9,38 @@ An open source block explorer written in node.js.
 *  mongodb 4.2.x
 *  *coind
 
+### nvm install
+	
+	sudo apt-get update
+	cd && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.9/install.sh | bash
+
+	vim /etc/profile
+
+Append at the end of the file
+
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+	[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+	
+Then `:wq` save and re source the file
+
+	source /etc/profile
+
+### Nodejs install
+
+	nvm install v12.14.0
+
+### MongoDB install
+
+	sudo apt-get install -y libcurl4 openssl
+	sudo apt-get install gnupg
+	wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+	echo "deb https://mirrors.tuna.tsinghua.edu.cn/mongodb/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+	sudo apt-get update
+	sudo apt-get install -y mongodb-org
+	sudo systemctl daemon-reload
+	sudo systemctl start mongod
+
 ### Create database
 
 Enter MongoDB cli:
