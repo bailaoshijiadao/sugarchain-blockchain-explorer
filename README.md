@@ -54,6 +54,7 @@ Create databse:
 Create user with read/write access:
 
     > db.createUser( { user: "mongo-user", pwd: "mongo-pwd", roles: [ "readWrite" ] } )
+	> exit
 
 ### Get the source
 
