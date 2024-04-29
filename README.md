@@ -58,11 +58,11 @@ Create user with read/write access:
 
 ### Get the source
 
-    git clone https://github.com/bailaoshijiadao/sugarchain-explorer sugarchain-explorer
+    git clone https://github.com/bailaoshijiadao/sugarchain-blockchain-explorer
 
 ### Install node modules
 
-    cd sugarchain-explorer && npm install --production
+    cd sugarchain-blockchain-explorer && npm install --production
 
 ### Configure
 
