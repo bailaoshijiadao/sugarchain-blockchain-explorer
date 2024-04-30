@@ -1,4 +1,4 @@
-SugarChain Explorer - 1.7.4
+SugarChain Blockchain Explorer - 1.7.4
 ================
 <details>
 <summary>Click to view manual deployment</summary>
