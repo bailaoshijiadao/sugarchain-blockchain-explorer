@@ -1,7 +1,11 @@
 SugarChain Explorer - 1.7.4
 ================
-
+<details>
+<summary>Click to view manual deployment</summary>
+<br>
 An open source block explorer written in node.js.
+
+*Note: This block explorer needs to be on the same server as the API node, using mongodb to save data, requiring 40GB of space. Please check if the hard disk space is sufficient*
 
 ### Requires
 
@@ -113,6 +117,72 @@ use different terminals
 
 ### COMPLETE
 
+#  Optional Settings
+
+## Configuration settings.json
+
+	"port" : 3001, //port modifiable, default 3001
+	......
+	"wallet": {
+    ......
+    "username": "baihe",
+    "password": "passwordbaihe"
+	}, //username and password based on API node sugarchain.conf file.
+
+## Domain settings
+
+### Point domain to your server
+
+### Install Nginx
+
+	sudo apt-get update
+	sudo apt install nginx -y
+	
+### Create nginx config (replace explorer.example.com with your domain)
+
+	sudo vim /etc/nginx/sites-available/explorer.example.com.conf
+	
+Write the following content (replace explorer.example.com with your domain)
+	
+	server {
+		server_name explorer.example.com;
+
+		location / {
+			proxy_pass http://localhost:3001;
+			proxy_http_version 1.1;
+			proxy_set_header Upgrade $http_upgrade;
+			proxy_set_header Connection 'upgrade';
+			proxy_set_header Host $host;
+			proxy_cache_bypass $http_upgrade;
+		}
+
+		location /socket.io {
+			include proxy_params;
+			proxy_http_version 1.1;
+			proxy_buffering off;
+			proxy_set_header Upgrade $http_upgrade;
+			proxy_set_header Connection "Upgrade";
+			proxy_pass http://127.0.0.1:3001/socket.io;
+		}
+
+		listen 80;
+	}
+
+### Activate nginx config (replace explorer.example.com with your domain)
+
+	sudo ln -s /etc/nginx/sites-available/explorer.example.com.conf /etc/nginx/sites-enabled
+	
+### Install certbot for ssl certificate
+
+	sudo apt install snapd -y
+	sudo snap install --classic certbot
+	
+### Obtain certificate (replace explorer.example.com with your domain)
+
+	sudo certbot --nginx -d explorer.example.com
+	
+After that blockchain explorer should be accessible via domain you pointed
+
 
 ### OTHER
 
@@ -198,3 +268,5 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+</details>
