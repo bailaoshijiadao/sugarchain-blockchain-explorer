@@ -203,10 +203,14 @@ After that blockchain explorer should be accessible via domain you pointed
 
 *Note: Set scheduled tasks after sync is completed*
 
+fix forever location for crontab
+	
+	sudo ln -s $(which node) /usr/bin/node
+
 *Example crontab; update index every minute and market data every 2 minutes*
 
-    */1 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/sync.js index update > /dev/null 2>&1
-    */2 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/sync.js market > /dev/null 2>&1
+    */1 * * * * cd /root/sugarchain-explorer && node scripts/sync.js index update > /dev/null 2>&1
+    */2 * * * * cd /root/sugarchain-explorer && node scripts/sync.js market > /dev/null 2>&1
 
 *for Example*
 
@@ -485,10 +489,14 @@ sync.js (位于scripts/中) 用于更新本地数据库, 必须从 sugarchain-bl
 
 *注意: 数据和区块都同步完成后再设置计划任务*
 
+修复 crontab 任务的 node 位置
+
+	sudo ln -s $(which node) /usr/bin/node
+
 *示例crontab: 每分钟更新数据, 每2分钟更新数据*
 
-    */1 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/sync.js index update > /dev/null 2>&1
-    */2 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/sync.js market > /dev/null 2>&1
+    */1 * * * * cd /root/sugarchain-explorer && node scripts/sync.js index update > /dev/null 2>&1
+    */2 * * * * cd /root/sugarchain-explorer && node scripts/sync.js market > /dev/null 2>&1
 
 *完整示例, 每分钟更新数据*
 
